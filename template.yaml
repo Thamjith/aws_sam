@@ -10,74 +10,12 @@ Globals:
     Timeout: 10
 
 Resources:
-  FetchAllUsers:
-    Type: AWS::Serverless::Function 
+  UserPaths:
+    Type: AWS::Serverless::Application
     Properties:
-      CodeUri: rest/
-      Handler: app.FetchAllUsers
-      Runtime: nodejs18.x
-      Architectures:
-        - x86_64
-      Events:
-        FetchAllUsers:
-          Type: Api
-          Properties:
-            Path: /FetchAllUsers
-            Method: GET
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref UserTable
-  CreateUsers:
-    Type: AWS::Serverless::Function 
-    Properties:
-      CodeUri: rest/
-      Handler: app.CreateUsers
-      Runtime: nodejs18.x
-      Architectures:
-        - x86_64
-      Events:
-        CreateUsers:
-          Type: Api
-          Properties:
-            Path: /CreateUsers
-            Method: POST
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref UserTable
-  DeleteUser:
-    Type: AWS::Serverless::Function 
-    Properties:
-      CodeUri: rest/
-      Handler: app.DeleteUser
-      Runtime: nodejs18.x
-      Architectures:
-        - x86_64
-      Events:
-        DeleteUser:
-          Type: Api
-          Properties:
-            Path: /DeleteUser
-            Method: DELETE
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref UserTable
-  UpdateUser:
-    Type: AWS::Serverless::Function 
-    Properties:
-      CodeUri: rest/
-      Handler: app.UpdateUser
-      Runtime: nodejs18.x
-      Architectures:
-        - x86_64
-      Events:
-        UpdateUser:
-          Type: Api
-          Properties:
-            Path: /UpdateUser
-            Method: PUT
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref UserTable
+      Location: gateway/user.yaml
+      Parameters:
+        UserTable: !Ref UserTable
   UserTable:
     Type: AWS::DynamoDB::Table
     Properties:
