@@ -30,7 +30,3 @@ Resources:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
 
-Outputs:
-  WebEndpoint:
-    Description: "REST API"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
