@@ -11,13 +11,13 @@ Globals:
     Timeout: 10
 
 Resources:
- # API Gateway
   ApiGateway:
     Type: AWS::Serverless::Api
     Properties:
       Name: Lambda-Dynamo-Api
       StageName: dev
-      EndpointConfiguration: REGIONAL
+      EndpointConfiguration:
+        Type: REGIONAL
       Cors:
         AllowOrigin: "'*'"      
         AllowMethods: "'*'"
